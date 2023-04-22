@@ -12,6 +12,11 @@ const shortcuts = [{
     name: "名詞解釋",
     content: `{{CLIPBOARDTEXT}} 中的 {{_CURSOR_}} 在這裡是什麼意思？可以有幾種翻譯？`,
     replacement: "{{CLIPBOARDTEXT}}"
+},
+{
+    name: "多作說明",
+    content: `針對 {{CLIPBOARDTEXT}} 請多作一些說明`,
+    replacement: "{{CLIPBOARDTEXT}}"
 }];
 
 const attachShortcuts = function () {
@@ -41,7 +46,7 @@ const attachShortcuts = function () {
                         $self.find("button").enable();
                     } else {
                         $textarea.val(message);
-                        
+
                         $self.find("button").enable().click();
                     }
 
