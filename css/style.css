@@ -1,8 +1,9 @@
 .shortcut-container {
-    padding: 0 8px 8px 8px;
+    padding: 0 8px 8px 0px;
 }
 
 .shortcut {
+    margin: 0 0 0 8px;
     background-color: #4CAF50;
     border: none;
     color: white;
