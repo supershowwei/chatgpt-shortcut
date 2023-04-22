@@ -40,6 +40,8 @@ const attachShortcuts = function () {
 
                         $self.find("button").enable();
                     } else {
+                        $textarea.val(message);
+                        
                         $self.find("button").enable().click();
                     }
 
