@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "ChatGPT Shortcut",
+    "version": "1.0.0",
+    "description": "這是一個 ChatGPT 的輔助工具，除了自訂 Prompt 的快捷鍵之外，還能自訂特定格式將快捷鍵的內容用剪貼薄中的文字取代。",
+    "icons": {
+        "16": "img/icon16.png",
+        "32": "img/icon32.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://chat.openai.com/*"
+            ],
+            "css": [
+                "css/style.css"
+            ],
+            "js": [
+                "lib/jquery/3.6.1/jquery.min.js",
+                "lib/jquery-chefextend/1.8.16/jquery-chefextend.min.js",
+                "content-script.js"
+            ]
+        }
+    ],
+    "author": "supershowwei@gmail.com"
+}
