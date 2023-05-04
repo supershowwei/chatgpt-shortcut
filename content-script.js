@@ -10,7 +10,7 @@ const shortcuts = [{
 },
 {
     name: "名詞解釋",
-    content: `{{CLIPBOARDTEXT}} 中的 {{_CURSOR_}} 在這裡是什麼意思？可以有幾種翻譯？`,
+    content: `{{CLIPBOARDTEXT}} 中的 {{_CURSOR_}} 在這裡是什麼意思？請列出 5 種可能的翻譯？`,
     replacement: "{{CLIPBOARDTEXT}}"
 },
 {
@@ -20,48 +20,54 @@ const shortcuts = [{
 }];
 
 const attachShortcuts = function () {
-    const $self = $(this);
+    const self = this;
 
-    const $shortcutDiv = $(`<div class="shortcut-container"></div>`);
+    const shortcutDiv = document.createElement("div");
 
-    shortcuts.forEach(shortcut => {
+    shortcutDiv.className = "shortcut-container";
 
-        $(`<div class="shortcut shortcut-tooltip">${shortcut.name}<span class="shortcut-tooltip-text multiline">${shortcut.content}</div>`)
-            .on("click", function () {
-                navigator.clipboard.readText().then(clipText => {
-                    const message = shortcut.replacement && shortcut.content.includes(shortcut.replacement)
-                        ? shortcut.content.replace(new RegExp(shortcut.replacement, "g"), clipText)
-                        : shortcut.content;
+    shortcuts.forEach((shortcut) => {
+        const shortcutElement = document.createElement("div");
 
-                    const $textarea = $self.find("textarea");
+        shortcutElement.className = "shortcut shortcut-tooltip";
+        shortcutElement.innerHTML = `${shortcut.name}<span class="shortcut-tooltip-text multiline">${shortcut.content}</span>`;
 
-                    if (shortcut.content.includes("{{_CURSOR_}}")) {
-                        const position = message.indexOf("{{_CURSOR_}}");
+        shortcutElement.addEventListener("click", function () {
+            navigator.clipboard.readText().then((clipText) => {
+                const message = shortcut.replacement && shortcut.content.includes(shortcut.replacement)
+                    ? shortcut.content.replace(new RegExp(shortcut.replacement, "g"), clipText)
+                    : shortcut.content;
 
-                        $textarea.val(message.replace("{{_CURSOR_}}", "")).focus();
+                const textarea = self.querySelector("textarea");
 
-                        $textarea[0].selectionStart = position;
-                        $textarea[0].selectionEnd = position;
+                if (shortcut.content.includes("{{_CURSOR_}}")) {
+                    const position = message.indexOf("{{_CURSOR_}}");
 
-                        $self.find("button").enable();
-                    } else {
-                        $textarea.val(message);
+                    textarea.value = message.replace("{{_CURSOR_}}", "");
+                    textarea.focus();
 
-                        $self.find("button").enable().click();
-                    }
+                    textarea.selectionStart = position;
+                    textarea.selectionEnd = position;
 
-                });
-            })
-            .appendTo($shortcutDiv);
+                    self.querySelector("button").disabled = false;
+                } else {
+                    textarea.value = message;
 
+                    const button = self.querySelector("button");
+                    
+                    button.disabled = false;
+                    button.click();
+                }
+            });
+        });
+
+        shortcutDiv.appendChild(shortcutElement);
     });
 
-    $self.before($shortcutDiv);
-}
+    self.insertAdjacentElement("beforebegin", shortcutDiv);
+};
 
-attachShortcuts.call($("form[class*='stretch'] textarea").closest("div")[0]);
-
-var mutationObserver = new MutationObserver(records => {
+const mutationObserver = new MutationObserver((records) => {
     for (let i = 0; i < records.length; i++) {
         const record = records[i];
         const nodes = record.addedNodes;
@@ -69,12 +75,18 @@ var mutationObserver = new MutationObserver(records => {
         let found;
 
         for (let j = nodes.length - 1; j >= 0; j--) {
-            const $node = $(nodes[j]);
+            const node = nodes[j];
 
-            const $inputDiv = $node.find("form[class*='stretch'] textarea").closest("div")
+            if (!node.querySelector) continue;
 
-            if ($inputDiv.length > 0) {
-                attachShortcuts.call($inputDiv[0]);
+            const textarea = node.querySelector("form[class*='stretch'] textarea");
+
+            if (!textarea) continue;
+
+            const inputDiv = textarea.closest("div");
+
+            if (inputDiv) {
+                attachShortcuts.call(inputDiv);
                 found = true;
                 break;
             }
@@ -84,4 +96,12 @@ var mutationObserver = new MutationObserver(records => {
     }
 });
 
-mutationObserver.observe($("#__next")[0], { childList: true, subtree: true });
+(() => {
+    const textarea = document.querySelector("form[class*='stretch'] textarea");
+
+    if (textarea) {
+        attachShortcuts.call(textarea.closest("div"));
+    }
+
+    mutationObserver.observe(document.querySelector("#__next"), { childList: true, subtree: true });
+})();

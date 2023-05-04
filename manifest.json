@@ -21,11 +21,12 @@
                 "css/style.css"
             ],
             "js": [
-                "lib/jquery/3.6.1/jquery.min.js",
-                "lib/jquery-chefextend/1.8.16/jquery-chefextend.min.js",
                 "content-script.js"
             ]
         }
+    ],
+    "permissions": [
+        "storage"
     ],
     "author": "supershowwei@gmail.com"
 }
