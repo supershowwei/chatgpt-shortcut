@@ -23,7 +23,8 @@ const shortcuts = [{
 }];
 
 const attachShortcuts = function () {
-    const self = this;
+    const form = document.querySelector("form[class*='stretch']");
+    const mainContainer = form.querySelector(".grow");
 
     const shortcutDiv = document.createElement("div");
 
@@ -45,8 +46,8 @@ const attachShortcuts = function () {
                     ? shortcut.content.replace(new RegExp(shortcut.replacement, "g"), clipText)
                     : shortcut.content;
 
-                const textarea = self.querySelector("textarea");
-                const button = self.querySelector("button");
+                const textarea = document.querySelector("#prompt-textarea");
+                const button = textarea.closest("div").querySelector("button");
 
                 if (shortcut.content.includes("{{_CURSOR_}}")) {
                     const position = message.indexOf("{{_CURSOR_}}");
@@ -72,7 +73,7 @@ const attachShortcuts = function () {
         shortcutDiv.appendChild(shortcutElement);
     });
 
-    self.insertAdjacentElement("afterend", shortcutDiv);
+    mainContainer.insertAdjacentElement("afterbegin", shortcutDiv);
 };
 
 const mutationObserver = new MutationObserver((records) => {
@@ -91,10 +92,10 @@ const mutationObserver = new MutationObserver((records) => {
 
             if (!textarea) continue;
 
-            const inputDiv = textarea.closest("div");
+            const container = document.querySelector("form[class*='stretch'] .grow");
 
-            if (inputDiv) {
-                attachShortcuts.call(inputDiv);
+            if (container) {
+                attachShortcuts();
                 found = true;
                 break;
             }
@@ -105,10 +106,10 @@ const mutationObserver = new MutationObserver((records) => {
 });
 
 (() => {
-    const textarea = document.querySelector("#prompt-textarea");
+    const container = document.querySelector("form[class*='stretch'] .grow");
 
-    if (textarea) {
-        attachShortcuts.call(textarea.closest("div"));
+    if (container) {
+        attachShortcuts();
     }
 
     mutationObserver.observe(document.querySelector("#__next"), { childList: true, subtree: true });
