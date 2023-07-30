@@ -20,6 +20,12 @@ const shortcuts = [{
     content: `針對 {{CLIPBOARDTEXT}} 請多作一些說明`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
+},
+{
+    name: "商品評鑑",
+    content: `請幫我寫一篇「{{CLIPBOARDTEXT}}」50 個字的 5 星評價`,
+    replacement: "{{CLIPBOARDTEXT}}",
+    useLineGap: false
 }];
 
 const attachShortcuts = function () {
