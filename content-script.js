@@ -46,6 +46,7 @@ const attachShortcuts = function () {
                     : shortcut.content;
 
                 const textarea = self.querySelector("textarea");
+                const button = self.querySelector("button");
 
                 if (shortcut.content.includes("{{_CURSOR_}}")) {
                     const position = message.indexOf("{{_CURSOR_}}");
@@ -56,13 +57,11 @@ const attachShortcuts = function () {
                     textarea.selectionStart = position;
                     textarea.selectionEnd = position;
 
-                    self.querySelector("button").disabled = false;
+                    button.disabled = false;
                 } else {
                     textarea.value = message;
                     textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
                     textarea.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
-
-                    var button = self.querySelector("button");
 
                     button.disabled = false;
                     button.click();
