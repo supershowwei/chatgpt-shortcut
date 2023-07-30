@@ -59,11 +59,9 @@ const attachShortcuts = function () {
                     self.querySelector("button").disabled = false;
                 } else {
                     textarea.value = message;
+                    textarea.focus();
 
-                    const button = self.querySelector("button");
-                    
-                    button.disabled = false;
-                    button.click();
+                    self.querySelector("button").disabled = false;
                 }
             });
         });
@@ -71,7 +69,7 @@ const attachShortcuts = function () {
         shortcutDiv.appendChild(shortcutElement);
     });
 
-    self.insertAdjacentElement("beforebegin", shortcutDiv);
+    self.insertAdjacentElement("afterend", shortcutDiv);
 };
 
 const mutationObserver = new MutationObserver((records) => {
@@ -86,7 +84,7 @@ const mutationObserver = new MutationObserver((records) => {
 
             if (!node.querySelector) continue;
 
-            const textarea = node.querySelector("form[class*='stretch'] textarea");
+            const textarea = node.querySelector("#prompt-textarea");
 
             if (!textarea) continue;
 
@@ -104,7 +102,7 @@ const mutationObserver = new MutationObserver((records) => {
 });
 
 (() => {
-    const textarea = document.querySelector("form[class*='stretch'] textarea");
+    const textarea = document.querySelector("#prompt-textarea");
 
     if (textarea) {
         attachShortcuts.call(textarea.closest("div"));
