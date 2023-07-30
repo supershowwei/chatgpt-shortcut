@@ -58,13 +58,13 @@ const attachShortcuts = function () {
                     textarea.selectionStart = position;
                     textarea.selectionEnd = position;
 
-                    button.disabled = false;
+                    textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
+                    textarea.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
                 } else {
                     textarea.value = message;
                     textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
                     textarea.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
 
-                    button.disabled = false;
                     button.click();
                 }
             });
