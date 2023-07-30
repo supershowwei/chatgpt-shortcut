@@ -59,9 +59,13 @@ const attachShortcuts = function () {
                     self.querySelector("button").disabled = false;
                 } else {
                     textarea.value = message;
-                    textarea.focus();
+                    textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
+                    textarea.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
 
-                    self.querySelector("button").disabled = false;
+                    var button = self.querySelector("button");
+
+                    button.disabled = false;
+                    button.click();
                 }
             });
         });
