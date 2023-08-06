@@ -57,7 +57,7 @@ const attachShortcuts = function () {
                 const button = textarea.closest("div").querySelector("button");
 
                 if (shortcut.content.includes("{{_CURSOR_}}")) {
-                    const position = message.indexOf("{{_CURSOR_}}");
+                    const position = message.replace(/\r/g, "").indexOf("{{_CURSOR_}}");
 
                     textarea.value = message.replace("{{_CURSOR_}}", "");
                     textarea.focus();
