@@ -12,7 +12,7 @@ const shortcuts = [{
 {
     name: "名詞解釋",
     content: `{{CLIPBOARDTEXT}}
-其中的 {{_CURSOR_}} 在這個上下文中是什麼意思？請列出 10 種可能的翻譯？`,
+其中的 {{_CURSOR_}} 在這個上下文中是什麼意思？請列出 10 種適當的翻譯。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
