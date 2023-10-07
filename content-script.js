@@ -64,7 +64,7 @@ const attachShortcuts = function () {
                     : shortcut.content;
 
                 const textarea = document.querySelector("#prompt-textarea");
-                const button = textarea.closest("div").querySelector("button");
+                const button = textarea.closest("div").querySelector("button[data-testid='send-button']");
 
                 if (shortcut.content.includes("{{_CURSOR_}}")) {
                     const position = message.replace(/\r/g, "").indexOf("{{_CURSOR_}}");
