@@ -10,7 +10,7 @@ const shortcuts = [{
     useLineGap: true
 },
 {
-    name: "英翻十中",
+    name: "翻十個中",
     content: `根據上下文，請將下面的英文先作解釋，再一字不漏地給出 10 個台灣正體中文的翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
 
 英文：###
@@ -28,7 +28,15 @@ const shortcuts = [{
 },
 {
     name: "多作說明",
-    content: `針對 {{CLIPBOARDTEXT}} 請多作一些說明`,
+    content: `根據上下文，請針對 {{CLIPBOARDTEXT}} 多作一些說明`,
+    replacement: "{{CLIPBOARDTEXT}}",
+    useLineGap: false
+},
+{
+    name: "下標",
+    content: `{{CLIPBOARDTEXT}}
+
+上面內容的標題是「{{_CURSOR_}}」，請你根據上面的內容提供給我 10 個合適的中文標題翻譯。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
