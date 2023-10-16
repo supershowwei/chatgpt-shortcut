@@ -36,7 +36,7 @@ const shortcuts = [{
     name: "下標",
     content: `{{CLIPBOARDTEXT}}
 
-上面內容的標題是「{{_CURSOR_}}」，請你根據上面的內容提供給我 10 個標題合適的中文翻譯。`,
+上面內容的標題是「{{_CURSOR_}}」，請你根據上面的內容幫我將標題翻譯成中文，給我 10 個參考結果。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
