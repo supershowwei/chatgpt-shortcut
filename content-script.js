@@ -45,6 +45,12 @@ const shortcuts = [{
     content: `請幫我寫一篇「{{CLIPBOARDTEXT}}」50 個字的 5 星評價`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
+},
+{
+    name: "解釋道義",
+    content: `請將這段內容先作「{{CLIPBOARDTEXT}}」文字解釋，然後再用發表演說的方式來產生演說內容，不要引言及過多贅述，專注在解釋內容上就好。`,
+    replacement: "{{CLIPBOARDTEXT}}",
+    useLineGap: false
 }];
 
 const attachShortcuts = function () {
