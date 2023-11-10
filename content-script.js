@@ -54,7 +54,7 @@ const shortcuts = [{
 }];
 
 const attachShortcuts = function () {
-    const mainContainer = document.querySelector("form[class*='stretch'] .grow");
+    const mainContainer = document.querySelector("form[class*='stretch']").parentNode;
 
     const shortcutDiv = document.createElement("div");
 
@@ -118,21 +118,15 @@ const mutationObserver = new MutationObserver((records) => {
 
             if (!node.querySelector) continue;
 
-            const container = node.querySelector(".grow");
-
-            if (!container) continue;
-
-            const stretchForm = container.closest("form[class*='stretch']")
+            const stretchForm = node.querySelector("form[class*='stretch']");
 
             if (!stretchForm) continue;
 
-            if (container) {
+            if (stretchForm) {
                 found = true;
                 attachShortcuts();
                 break;
             }
-
-            if (found) break;
         }
 
         if (found) break;
@@ -140,5 +134,6 @@ const mutationObserver = new MutationObserver((records) => {
 });
 
 (() => {
-    mutationObserver.observe(document.querySelector("#__next"), { childList: true, subtree: true });
+    attachShortcuts();
+    mutationObserver.observe(document.querySelector("main"), { childList: true, subtree: true });
 })();
