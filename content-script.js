@@ -115,7 +115,7 @@ const mutationObserver = new MutationObserver((records) => {
 
         for (let j = nodes.length - 1; j >= 0; j--) {
             const node = nodes[j];
-
+            
             if (!node.querySelector) continue;
 
             const stretchForm = node.querySelector("form[class*='stretch']");
@@ -135,5 +135,5 @@ const mutationObserver = new MutationObserver((records) => {
 
 (() => {
     attachShortcuts();
-    mutationObserver.observe(document.querySelector("main"), { childList: true, subtree: true });
+    mutationObserver.observe(document.querySelector("#__next"), { childList: true, subtree: true });
 })();
