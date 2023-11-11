@@ -10,16 +10,6 @@ const shortcuts = [{
     useLineGap: true
 },
 {
-    name: "翻十個中",
-    content: `根據上下文，請將下面的英文先作解釋，再一字不漏地給出 10 個台灣正體中文的翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
-
-英文：###
-{{CLIPBOARDTEXT}}
-###`,
-    replacement: "{{CLIPBOARDTEXT}}",
-    useLineGap: true
-},
-{
     name: "名詞解釋",
     content: `{{CLIPBOARDTEXT}}
 其中的 {{_CURSOR_}} 在這個上下文中是什麼意思？請列出 10 種適當的翻譯。`,
@@ -28,7 +18,11 @@ const shortcuts = [{
 },
 {
     name: "多作說明",
-    content: `根據上下文，請針對 {{CLIPBOARDTEXT}} 多作一些說明`,
+    content: `根據上下文，請針對下面的英文多作一些說明，並且一字不漏地給出 10 個台灣正體中文的翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
+
+英文：###
+{{CLIPBOARDTEXT}}
+###`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
