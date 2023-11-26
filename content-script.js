@@ -1,7 +1,9 @@
+// content: `將下面的英文一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
+// content: `根據上下文，請一字不漏地翻譯下面這段英文，給出 10 個台灣正體中文的翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
 
 const shortcuts = [{
     name: "英翻中",
-    content: `將下面的英文一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
+    content: `將下面的英文一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果。
 
 英文：###
 {{CLIPBOARDTEXT}}
@@ -18,7 +20,17 @@ const shortcuts = [{
 },
 {
     name: "多作說明",
-    content: `根據上下文，請針對下面的英文多作一些說明，並且一字不漏地給出 10 個台灣正體中文的翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
+    content: `根據上下文，請解釋說明下面這段英文。
+
+英文：###
+{{CLIPBOARDTEXT}}
+###`,
+    replacement: "{{CLIPBOARDTEXT}}",
+    useLineGap: false
+},
+{
+    name: "翻十個",
+    content: `根據上下文，請一字不漏地翻譯下面這段英文，給出 10 個台灣正體中文的翻譯結果。
 
 英文：###
 {{CLIPBOARDTEXT}}
@@ -109,7 +121,7 @@ const mutationObserver = new MutationObserver((records) => {
 
         for (let j = nodes.length - 1; j >= 0; j--) {
             const node = nodes[j];
-            
+
             if (!node.querySelector) continue;
 
             const stretchForm = node.querySelector("form[class*='stretch']");
