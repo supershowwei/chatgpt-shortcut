@@ -3,11 +3,7 @@
 
 const shortcuts = [{
     name: "英翻中",
-    content: `將下面的英文一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果。
-
-英文：###
-{{CLIPBOARDTEXT}}
-###`,
+    content: `請將「{{CLIPBOARDTEXT}}」一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: true
 },
@@ -20,21 +16,13 @@ const shortcuts = [{
 },
 {
     name: "多作說明",
-    content: `根據上下文，請解釋說明下面這段英文。
-
-英文：###
-{{CLIPBOARDTEXT}}
-###`,
+    content: `根據上下文，請解釋說明「{{CLIPBOARDTEXT}}」是什麼意思？`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
 {
     name: "翻十個",
-    content: `根據上下文，請一字不漏地翻譯下面這段英文，給出 10 個台灣正體中文的翻譯結果。
-
-英文：###
-{{CLIPBOARDTEXT}}
-###`,
+    content: `根據上下文，請一字不漏地翻譯「{{CLIPBOARDTEXT}}」，給出 10 個台灣正體中文的翻譯結果。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
