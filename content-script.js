@@ -22,7 +22,7 @@ const shortcuts = [{
 },
 {
     name: "翻十個",
-    content: `根據上下文，請一字不漏地翻譯「{{CLIPBOARDTEXT}}」，給出 10 個台灣正體中文的翻譯結果。`,
+    content: `根據上下文，請將這段英文，就這段英文，只要這段英文「{{CLIPBOARDTEXT}}」一字不漏地翻譯成正體中文，給出 10 個台灣正體中文的翻譯結果。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 },
