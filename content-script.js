@@ -1,9 +1,18 @@
 // content: `將下面的英文一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
 // content: `根據上下文，請一字不漏地翻譯下面這段英文，給出 10 個台灣正體中文的翻譯結果，而且只要翻譯就好，內容不是程式碼，請以純文字的方式呈現結果，且不要使用分隔線。
 
+// ,
+// {
+//     name: "解釋道義",
+//         content: `請將這段內容先作「{{CLIPBOARDTEXT}}」文字解釋，然後再用發表演說的方式來產生演說內容，不要引言及過多贅述，專注在解釋內容上就好。`,
+//             replacement: "{{CLIPBOARDTEXT}}",
+//                 useLineGap: false
+// }
+
 const shortcuts = [{
     name: "英翻中",
     content: `{{CLIPBOARDTEXT}}
+
 請將上面這段英文，就上面這段英文，只要上面這段英文，一字不漏地翻譯成台灣正體中文，言辭要順暢，產生 3 種版本的翻譯結果，第 2 種版本的翻譯結果是改善自第 1 種版本的翻譯結果，第 3 種翻譯結果是改善自第 2 種翻譯結果，每一種版本之間隔一個空白行。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: true
@@ -11,6 +20,7 @@ const shortcuts = [{
 {
     name: "名詞解釋",
     content: `{{CLIPBOARDTEXT}}
+
 其中的 {{_CURSOR_}} 在這個上下文中是什麼意思？請列出 10 種適當的翻譯。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
@@ -24,6 +34,7 @@ const shortcuts = [{
 {
     name: "翻十個",
     content: `{{CLIPBOARDTEXT}}
+
 根據上下文，請將上面這段英文，就上面這段英文，只要上面這段英文，一字不漏地翻譯成正體中文，給出 10 個台灣正體中文的翻譯結果。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
@@ -39,12 +50,6 @@ const shortcuts = [{
 {
     name: "商品評鑑",
     content: `請幫我寫一篇「{{CLIPBOARDTEXT}}」50 個字的 5 星評價`,
-    replacement: "{{CLIPBOARDTEXT}}",
-    useLineGap: false
-},
-{
-    name: "解釋道義",
-    content: `請將這段內容先作「{{CLIPBOARDTEXT}}」文字解釋，然後再用發表演說的方式來產生演說內容，不要引言及過多贅述，專注在解釋內容上就好。`,
     replacement: "{{CLIPBOARDTEXT}}",
     useLineGap: false
 }];
